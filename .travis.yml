@@ -1,0 +1,36 @@
+language: cpp
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      sudo: required
+      dist: xenial
+      compiler: gcc
+      env: COMPILER=g++-7
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-7
+            - g++-7
+
+    - os: linux
+      sudo: required
+      dist: xenial
+      compiler: clang
+
+    - os: osx 
+      osx_image: xcode10.1
+    
+    - allow_failures:
+      os: windows
+
+before_install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; fi
+
+script:
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
