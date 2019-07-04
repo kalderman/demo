@@ -9,24 +9,32 @@ matrix:
       env: COMPILER=g++-7
       addons:
         apt:
+          update: true
           sources:
             - ubuntu-toolchain-r-test
           packages:
             - gcc-7
             - g++-7
+            - xorg-dev
 
     - os: linux
       sudo: required
       dist: xenial
       compiler: clang
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - xorg-dev
 
     - os: osx 
       osx_image: xcode10.1
 
-before_install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get update -qq; fi
-
 script:
+  - git clone https:\\github.com\glfw\glfw
+  - git clone https:\\github.com\cginternals\glbinding
   - mkdir build
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
