@@ -33,8 +33,8 @@ matrix:
       osx_image: xcode10.1
 
 script:
-  - git clone https:\\github.com\glfw\glfw
-  - git clone https:\\github.com\cginternals\glbinding
+  - git clone https://github.com/glfw/glfw
+  - git clone https://github.com/cginternals/glbinding
   - mkdir build
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
