@@ -33,8 +33,12 @@ matrix:
       osx_image: xcode10.1
 
 script:
+  - mkdir lib
+  - cd lib
   - git clone https://github.com/glfw/glfw
   - git clone https://github.com/cginternals/glbinding
+  - git clone https://github.com/catchorg/Catch2
+  - cd ..
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && cmake --build . && make test

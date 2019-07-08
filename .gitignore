@@ -1,6 +1,3 @@
 .vscode/*
 build/*
-CMakeCache.txt
-CMakeFiles/*
-glfw/*
-glbinding/*
+lib/*
