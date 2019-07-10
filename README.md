@@ -20,3 +20,9 @@ This demo is an interactive OpenGL implementation of [turtle graphics](https://e
 - Draw a turtle (currently a triangle).
 - Stop the turtle at the edge of the window or pass to other side.
 - Test some of the drawing/state related code.
+- Add ability to change line color.
+- Make movement and rotation values configurable.
+- Make keys configurable.
+- Use modern OpenGL to do the rendering.
+- Optimize...
+- ... turn this into an asteroids game. :)
