@@ -1,26 +1,61 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
-project(helloworld VERSION 0.1.0)
+project(turtle_graphics VERSION 1.0.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(helloworld helloworld.cpp)
+add_executable(
+    turtle_graphics 
+    app/main.cpp
+    app/include/openglwindow.hpp
+    app/include/drawing.h
+    app/src/drawing.cpp
+    app/include/input_processing.h
+    app/src/input_processing.cpp
+)
+target_include_directories(turtle_graphics PRIVATE app/include)
+target_link_libraries(turtle_graphics PRIVATE libdomain)
 
-#OpenGL dependencies
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+#setup OpenGL dependencies
+set(GLFW_BUILD_DOCS        OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS       OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES    OFF CACHE BOOL "" FORCE)
 add_subdirectory(lib/glfw)
-target_link_libraries(helloworld glfw)
+target_link_libraries(turtle_graphics PRIVATE glfw)
 add_subdirectory(lib/glbinding)
-target_link_libraries(helloworld glbinding)
+target_link_libraries(turtle_graphics PRIVATE glbinding)
+
+#setup domain library
+add_library(
+    libdomain 
+    STATIC
+
+    domain/include/advance_turtle.h
+    domain/include/calculate_position.h
+    domain/include/match.h
+    domain/include/orientation.h
+    domain/include/position.h
+    domain/include/turtle_events.hpp
+    domain/include/turtle.hpp
+
+    domain/src/advance_turtle.cpp 
+    domain/src/calculate_position.cpp
+    domain/src/orientation.cpp
+)
+target_include_directories(libdomain PUBLIC domain/include)
 
 #setup automated tests
-add_executable(tests tests.cpp)
+add_executable(
+    tests 
+    tests/tests.cpp 
+    tests/orientation_tests.cpp
+    tests/turtle_tests.cpp 
+)
 target_include_directories(tests PRIVATE lib/Catch2/single_include/catch2)
 add_subdirectory(lib/Catch2)
-target_link_libraries(tests Catch2::Catch2)
+target_link_libraries(tests PRIVATE Catch2::Catch2)
+target_link_libraries(tests PRIVATE libdomain)
 
 include(CTest)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/lib/Catch2/contrib)
