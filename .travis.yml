@@ -41,4 +41,4 @@ script:
   - cd ..
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && cmake --build . && make test
+  - cmake -std=c++17 -DCMAKE_CXX_COMPILER=$COMPILER .. && cmake --build . && make test
