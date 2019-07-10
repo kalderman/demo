@@ -28,6 +28,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - xorg-dev
+            - libc++
 
     - os: osx 
       osx_image: xcode10.1
