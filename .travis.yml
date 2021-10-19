@@ -1,9 +1,8 @@
 language: cpp
 
-matrix:
+jobs:
   include:
     - os: linux
-      sudo: required
       dist: xenial
       compiler: gcc
       env: COMPILER=g++-7
@@ -18,7 +17,6 @@ matrix:
             - xorg-dev
 
     - os: linux
-      sudo: required
       dist: xenial
       compiler: clang
       addons:
@@ -39,7 +37,7 @@ script:
   - git clone https://github.com/glfw/glfw
   - cd glfw
   - mkdir build
-  - cmake -S . -B build -G $COMPILER
+  - cmake -S . -B build
   - cmake --build build
   - cd ..
   - git clone https://github.com/cginternals/glbinding
