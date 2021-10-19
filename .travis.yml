@@ -37,6 +37,8 @@ script:
   - mkdir lib
   - cd lib
   - git clone https://github.com/glfw/glfw
+  - cmake -S glfw -B glfw/build -G $COMPILER
+  - cmake --build glfw/build
   - git clone https://github.com/cginternals/glbinding
   - git clone https://github.com/catchorg/Catch2
   - cd ..
