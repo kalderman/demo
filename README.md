@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/kalderman/demo.svg?branch=master)](https://travis-ci.com/kalderman/demo)
+[![Build Status](https://app.travis-ci.com/kalderman/demo.svg?branch=master)](https://app.travis-ci.com/kalderman/demo)
 
 ## Turtle graphics
 This demo is an interactive OpenGL implementation of [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics).
