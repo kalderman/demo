@@ -5,7 +5,7 @@ jobs:
     - os: linux
       dist: xenial
       compiler: gcc
-      env: COMPILER=Unix Makefiles
+      env: COMPILER="Unix Makefiles"
       addons:
         apt:
           update: true
@@ -19,18 +19,10 @@ jobs:
     - os: linux
       dist: xenial
       compiler: clang
-      env: COMPILER=Unix Makefiles
-      addons:
-        apt:
-          update: true
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - xorg-dev
-            - libc++
+      env: COMPILER="Unix Makefiles"
 
     - os: osx 
-      env: COMPILER=Unix Makefiles
+      env: COMPILER="Unix Makefiles"
       osx_image: xcode10.1
 
 script:
