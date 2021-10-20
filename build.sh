@@ -21,12 +21,14 @@ done
 
 if [ ${clean} = true ]; then
   echo "Removing build artifacts"
-  rm -rf build/*
+  rm -rf build
+  mkdir build
 fi
 
 if [ ${clobber} = true ]; then
   echo "Removing dependencies"
-  rm -rf deps/*
+  rm -rf deps
+  mkdir deps
 
   echo "Get dependencies"
   cd deps
