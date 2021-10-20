@@ -40,9 +40,13 @@ fi
 
 echo "Build"
 cd build
-cmake -G ''"${compiler}"'' -std=c++17 .. && cmake --build .
+cmake -G ''"${compiler}"'' .. && cmake --build .
 
 if [ ${test} = true ]; then
     echo "Test"
-    make test
+    if [[ ${compiler} == Visual* ]]; then
+      Debug/tests.exe
+    else
+      make test
+    fi
 fi
