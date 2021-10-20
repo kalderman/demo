@@ -30,4 +30,5 @@ script:
   - git clone --depth 1 --branch v2.13.7 https://github.com/catchorg/Catch2
   - cd ..
   - mkdir build
+  - cd build
   - cmake -G 'Unix Makefiles' -std=c++17 .. && cmake --build . make test
