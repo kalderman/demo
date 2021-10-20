@@ -25,6 +25,7 @@ jobs:
             - ubuntu-toolchain-r-test
           packages:
             - libxrandr-dev
+            - libxinerama-dev
 
     - os: osx 
       osx_image: xcode10.1
