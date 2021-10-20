@@ -5,32 +5,13 @@ jobs:
     - os: linux
       dist: bionic
       compiler: gcc
-      env: COMPILER=g++-7
-      addons:
-        apt:
-          update: true
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-7
-            - g++-7
-            - xorg-dev
 
     - os: linux
       dist: bionic
       compiler: clang
-      env: COMPILER=clang++
-      addons:
-        apt:
-          update: true
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
 
     - os: osx 
       osx_image: xcode13
-      env: COMPILER=clang++
 
 script:
   - mkdir deps
@@ -41,4 +22,4 @@ script:
   - cd ..
   - mkdir build
   - cd build
-  - cmake -G 'Unix Makefiles' -std=c++17 -DCMAKE_CXX_COMPILER=$COMPILER .. && cmake --build . && make test
+  - cmake -G 'Unix Makefiles' -std=c++17 .. && cmake --build . && make test
