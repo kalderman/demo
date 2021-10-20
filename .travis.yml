@@ -33,4 +33,4 @@ script:
   - git clone --depth 1 --branch v2.13.7 https://github.com/catchorg/Catch2
   - cd ..
   - mkdir build
-  - cmake -G '${COMPILER}' -std=c++17 .. && cmake --build . make test
+  - cmake -G ''"${COMPILER}"'' -std=c++17 .. && cmake --build . make test
