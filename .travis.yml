@@ -26,4 +26,11 @@ jobs:
       osx_image: xcode10.1
 
 script:
-  - sh build.sh -c $COMPILER -clobber -test
+  - mkdir deps
+  - cd deps
+  - git clone --depth 1 --branch 3.3.4 https://github.com/glfw/glfw
+  - git clone --depth 1 --branch v3.1.0 https://github.com/cginternals/glbinding
+  - git clone --depth 1 --branch v2.13.7 https://github.com/catchorg/Catch2
+  - cd ..
+  - mkdir build
+  - cmake -G '${COMPILER}' -std=c++17 .. && cmake --build . make test
