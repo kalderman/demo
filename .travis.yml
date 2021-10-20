@@ -18,6 +18,13 @@ jobs:
     - os: linux
       dist: xenial
       compiler: clang
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libxrandr
 
     - os: osx 
       osx_image: xcode10.1
@@ -31,4 +38,4 @@ script:
   - cd ..
   - mkdir build
   - cd build
-  - cmake -G 'Unix Makefiles' -std=c++17 .. && cmake --build . make test
+  - cmake -G 'Unix Makefiles' -std=c++17 .. && cmake --build . && make test
