@@ -5,13 +5,35 @@ jobs:
     - os: linux
       dist: bionic
       compiler: gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libxrandr-dev 
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libxext-dev
 
     - os: linux
       dist: bionic
       compiler: clang
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libxrandr-dev 
+            - libxinerama-dev
+            - libxcursor-dev
+            - libxi-dev
+            - libxext-dev
 
     - os: osx 
-      osx_image: xcode13
+      osx_image: xcode12.5
 
 script:
   - mkdir deps
