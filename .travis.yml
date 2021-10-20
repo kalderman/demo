@@ -24,7 +24,7 @@ jobs:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - libxrandr
+            - libxrandr-dev
 
     - os: osx 
       osx_image: xcode10.1
