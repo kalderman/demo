@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(turtle_graphics VERSION 1.0.0 LANGUAGES CXX)
-#project(turtle_graphics VERSION 1.0.0)
 
-find_package(OpenGL REQUIRED)
-find_package(glbinding REQUIRED)
+#find_package(OpenGL REQUIRED)
+#find_package(glbinding REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
