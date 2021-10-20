@@ -1,9 +1,8 @@
 language: cpp
 
-matrix:
+jobs:
   include:
     - os: linux
-      sudo: required
       dist: xenial
       compiler: gcc
       env: COMPILER=g++-7
@@ -18,7 +17,6 @@ matrix:
             - xorg-dev
 
     - os: linux
-      sudo: required
       dist: xenial
       compiler: clang
       addons:
