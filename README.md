@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/kalderman/demo.svg?branch=master)](https://app.travis-ci.com/kalderman/demo)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/HCHGpm8F1pTpV3Wv3ZPcJS/9JLqvSmPrNTDGjyZgim6yS/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/HCHGpm8F1pTpV3Wv3ZPcJS/9JLqvSmPrNTDGjyZgim6yS/tree/circleci-project-setup)
 
 ## Turtle graphics
 This demo is an interactive OpenGL implementation of [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics).
