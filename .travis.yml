@@ -38,12 +38,6 @@ jobs:
       osx_image: xcode12.5
 
 script:
-  - mkdir deps
-  - cd deps
-  - git clone --depth 1 --branch 3.3.4 https://github.com/glfw/glfw
-  - git clone --depth 1 --branch v3.1.0 https://github.com/cginternals/glbinding
-  - git clone --depth 1 --branch v2.13.7 https://github.com/catchorg/Catch2
-  - cd ..
-  - mkdir build
-  - cd build
-  - cmake -G 'Unix Makefiles' .. && cmake --build . && make test
+  - pip install conan
+  - conan profile detect
+  - sh build.sh -test

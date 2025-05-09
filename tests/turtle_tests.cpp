@@ -1,4 +1,5 @@
-#include "catch.hpp"
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_approx.hpp>
 #include "turtle.hpp"
 #include "turtle_events.hpp"
 #include "match.h"
@@ -16,8 +17,8 @@ TEST_CASE("Default turtle has expected state")
 
     REQUIRE( is_pen_up(given) );
     REQUIRE( given.orientation.degrees == 0 );
-    REQUIRE( given.position.X == Approx(.0f) );
-    REQUIRE( given.position.Y == Approx(.0f) );
+    REQUIRE( given.position.X == Catch::Approx(.0f) );
+    REQUIRE( given.position.Y == Catch::Approx(.0f) );
 }
 
 TEST_CASE("Foward movement advances the turtle 10 units"){
@@ -25,7 +26,7 @@ TEST_CASE("Foward movement advances the turtle 10 units"){
     auto event = Move();
     auto actual = advance_turtle(given, event);
     auto expected = Move::Distance;
-    REQUIRE( actual.position.Y == Approx(expected) );
+    REQUIRE( actual.position.Y == Catch::Approx(expected) );
 }
 
 TEST_CASE("Turn clockwise rotates the turtle 10 degrees clockwise"){
@@ -69,30 +70,30 @@ TEST_CASE("Draw a 10x10 square"){
 
     auto pen_down = advance_turtle(given, TogglePen());
     REQUIRE( is_pen_down(pen_down) );
-    REQUIRE( pen_down.position.X == Approx(.0f) );
-    REQUIRE( pen_down.position.Y == Approx(.0f) );
+    REQUIRE( pen_down.position.X == Catch::Approx(.0f) );
+    REQUIRE( pen_down.position.Y == Catch::Approx(.0f) );
 
     auto move = Move();
     auto top_left = advance_turtle(pen_down, move);
     CHECK( is_pen_down(top_left) );
-    REQUIRE( top_left.position.X == Approx(.0f) );
-    REQUIRE( top_left.position.Y == Approx(10.0f) );
+    REQUIRE( top_left.position.X == Catch::Approx(.0f) );
+    REQUIRE( top_left.position.Y == Catch::Approx(10.0f) );
     
     auto top_left_rotated_90 = rotate_90cw(top_left);
     auto top_right = advance_turtle(top_left_rotated_90, move);
     CHECK( is_pen_down(top_right) );
-    REQUIRE( top_right.position.X == Approx(10.0f) );
-    REQUIRE( top_right.position.Y == Approx(10.0f) );
+    REQUIRE( top_right.position.X == Catch::Approx(10.0f) );
+    REQUIRE( top_right.position.Y == Catch::Approx(10.0f) );
 
     auto top_right_rotated_180 = rotate_90cw(top_right);
     auto bottom_right = advance_turtle(top_right_rotated_180, move);
     CHECK( is_pen_down(bottom_right) );
-    REQUIRE( bottom_right.position.X == Approx(10.0f) );
-    REQUIRE( bottom_right.position.Y == Approx(.0f) );
+    REQUIRE( bottom_right.position.X == Catch::Approx(10.0f) );
+    REQUIRE( bottom_right.position.Y == Catch::Approx(.0f) );
 
     auto bottom_right_rotated_270 = rotate_90cw(bottom_right);
     auto bottom_left = advance_turtle(bottom_right_rotated_270, move);
     CHECK( is_pen_down(bottom_left) );
-    REQUIRE( bottom_left.position.X == Approx(.0f) );
-    REQUIRE( bottom_left.position.Y == Approx(.0f).margin(0.001f) );
+    REQUIRE( bottom_left.position.X == Catch::Approx(.0f) );
+    REQUIRE( bottom_left.position.Y == Catch::Approx(.0f).margin(0.001f) );
 }

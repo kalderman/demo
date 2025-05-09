@@ -1,0 +1,11 @@
+[requires]
+glfw/3.4
+glbinding/3.3.0
+catch2/3.7.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout
