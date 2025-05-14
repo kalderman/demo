@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Instal lcov
+          command: sudo apt-get install lcov
+      - run:
           name: Install pip
           command: sudo apt-get update && sudo apt-get install -y python3-pip
       - run:
