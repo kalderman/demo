@@ -1,5 +1,5 @@
-#include "input_processing.h"
-#include "advance_turtle.h"
+#include "input_processing.hpp"
+#include "advance_turtle.hpp"
 #include "turtle_events.hpp"
 #include <GLFW/glfw3.h>
 #include <optional>

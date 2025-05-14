@@ -1,5 +1,5 @@
 #include <math.h>
-#include "calculate_position.h"
+#include "calculate_position.hpp"
 
 Position calculate_position(
     const Position& p,

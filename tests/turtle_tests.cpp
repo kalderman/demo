@@ -2,8 +2,8 @@
 #include <catch2/catch_approx.hpp>
 #include "turtle.hpp"
 #include "turtle_events.hpp"
-#include "match.h"
-#include "advance_turtle.h"
+#include "match.hpp"
+#include "advance_turtle.hpp"
 
 #include <variant>
 #include <iostream>

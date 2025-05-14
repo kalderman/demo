@@ -1,6 +1,6 @@
 #include <memory>
 #include <catch2/catch_test_macros.hpp>
-#include "orientation.h"
+#include "orientation.hpp"
 #include "turtle_events.hpp"
 
 TEST_CASE("Default angle is zero"){

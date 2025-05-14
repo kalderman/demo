@@ -3,10 +3,10 @@
 
 #include <variant>
 
-#include "orientation.h"
-#include "position.h"
+#include "orientation.hpp"
+#include "position.hpp"
 #include "turtle_events.hpp"
-#include "match.h"
+#include "match.hpp"
 
 struct Turtle {
     const std::variant<Up, Down> pen = Up();

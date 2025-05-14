@@ -1,10 +1,10 @@
-#include "advance_turtle.h"
+#include "advance_turtle.hpp"
 
 #include <variant>
 
 #include "turtle_events.hpp"
-#include "match.h"
-#include "calculate_position.h"
+#include "match.hpp"
+#include "calculate_position.hpp"
 
 using namespace std;
 

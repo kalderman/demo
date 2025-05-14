@@ -21,9 +21,9 @@ add_executable(
 
     app/main.cpp
     app/openglwindow.hpp
-    app/drawing.h
+    app/drawing.hpp
     app/drawing.cpp
-    app/input_processing.h
+    app/input_processing.hpp
     app/input_processing.cpp
 )
 target_link_libraries(turtle_graphics PRIVATE glfw glbinding::glbinding)
@@ -35,11 +35,11 @@ add_library(
     libdomain 
     STATIC
 
-    domain/advance_turtle.h
-    domain/calculate_position.h
-    domain/match.h
-    domain/orientation.h
-    domain/position.h
+    domain/advance_turtle.hpp
+    domain/calculate_position.hpp
+    domain/match.hpp
+    domain/orientation.hpp
+    domain/position.hpp
     domain/turtle_events.hpp
     domain/turtle.hpp
 

@@ -3,8 +3,8 @@
 
 #include "openglwindow.hpp"
 #include "turtle.hpp"
-#include "drawing.h"
-#include "input_processing.h"
+#include "drawing.hpp"
+#include "input_processing.hpp"
 
 using namespace std;
 

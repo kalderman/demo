@@ -1,5 +1,5 @@
-#include "position.h"
-#include "drawing.h"
+#include "position.hpp"
+#include "drawing.hpp"
 #include <glbinding/gl/gl.h>
 #include <algorithm>
 
