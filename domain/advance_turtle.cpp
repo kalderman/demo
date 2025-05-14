@@ -25,7 +25,7 @@ Turtle advance_turtle(
             [&current](const Rotate& arg) { 
                 return Turtle {
                     current.pen,
-                    *current.orientation.apply(arg),
+                    current.orientation.apply(arg),
                     current.position
                 }; 
             },

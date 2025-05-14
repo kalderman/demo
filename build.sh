@@ -6,13 +6,13 @@ test=false
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -install) install=true; shift 1;;
-    -clean) clean=true; shift 1;;
-    -clobber) clobber=true; clean=true; shift 1;;
+    -clean) clean=true; install=true; shift 1;;
+    -clobber) clobber=true; clean=true; install=true; shift 1;;
     -test) test=true; shift 1;;
     -h) echo "Usage:";
         echo "       -install: Installs dependencies.";
         echo "       -clean: Removes build artifacts.";
-        echo "       -clobber: Cleans build artifacts and deletes Conan cache.";
+        echo "       -clobber: Cleans and deletes Conan cache.";
         echo "       -test: Executes unit tests.";
         exit 0;;
     -*) echo "Error: unknown option $1" >&2; exit 1;;

@@ -14,7 +14,7 @@ class Orientation
     Orientation();
     Orientation(const Rotate& r);
 
-    std::unique_ptr<Orientation> apply(const Rotate& rhs) const;
+    Orientation apply(const Rotate& rhs) const;
 
     private:
     static bool is_clockwise(const Rotate& r);

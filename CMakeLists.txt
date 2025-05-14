@@ -5,17 +5,6 @@ find_package(glfw3 REQUIRED)
 find_package(glbinding REQUIRED)
 find_package(Catch2 REQUIRED)
 
-# Code coverage setup
-option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
-if(ENABLE_COVERAGE)
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-        add_compile_options(--coverage -O0 -g)
-        add_link_options(--coverage)
-    else()
-        message(WARNING "Coverage is only supported for GCC")
-    endif()
-endif()
-
 add_executable(
     turtle_graphics 
 
@@ -26,9 +15,19 @@ add_executable(
     app/input_processing.hpp
     app/input_processing.cpp
 )
-target_link_libraries(turtle_graphics PRIVATE glfw glbinding::glbinding)
+target_link_libraries(turtle_graphics PRIVATE glfw glbinding::glbinding libdomain)
 target_include_directories(turtle_graphics PRIVATE app)
-target_link_libraries(turtle_graphics PRIVATE libdomain)
+
+# Code coverage setup
+option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
+if(ENABLE_COVERAGE)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+        add_compile_options(--coverage -O0 -g)
+        add_link_options(--coverage)
+    else()
+        message(WARNING "Coverage is only supported for GCC")
+    endif()
+endif()
 
 #setup domain library
 add_library(
@@ -69,7 +68,7 @@ if(ENABLE_COVERAGE)
                 COMMAND ${CMAKE_COMMAND} -E make_directory coverage
                 COMMAND tests
                 COMMAND ${LCOV} --capture --directory . --output-file coverage/coverage.info
-                COMMAND ${LCOV} --remove coverage/coverage.info '/usr/*' '*/catch2/*' --output-file coverage/coverage.info
+                COMMAND ${LCOV} --remove coverage/coverage.info '/usr/*' '*/.conan2/*' '*/app/*' --output-file coverage/coverage.info
                 COMMAND ${GENHTML} coverage/coverage.info --output-directory coverage/html
                 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                 COMMENT "Generating coverage report"
