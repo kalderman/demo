@@ -18,15 +18,16 @@ endif()
 
 add_executable(
     turtle_graphics 
+
     app/main.cpp
-    app/include/openglwindow.hpp
-    app/include/drawing.h
-    app/src/drawing.cpp
-    app/include/input_processing.h
-    app/src/input_processing.cpp
+    app/openglwindow.hpp
+    app/drawing.h
+    app/drawing.cpp
+    app/input_processing.h
+    app/input_processing.cpp
 )
 target_link_libraries(turtle_graphics PRIVATE glfw glbinding::glbinding)
-target_include_directories(turtle_graphics PRIVATE app/include)
+target_include_directories(turtle_graphics PRIVATE app)
 target_link_libraries(turtle_graphics PRIVATE libdomain)
 
 #setup domain library
@@ -34,23 +35,24 @@ add_library(
     libdomain 
     STATIC
 
-    domain/include/advance_turtle.h
-    domain/include/calculate_position.h
-    domain/include/match.h
-    domain/include/orientation.h
-    domain/include/position.h
-    domain/include/turtle_events.hpp
-    domain/include/turtle.hpp
+    domain/advance_turtle.h
+    domain/calculate_position.h
+    domain/match.h
+    domain/orientation.h
+    domain/position.h
+    domain/turtle_events.hpp
+    domain/turtle.hpp
 
-    domain/src/advance_turtle.cpp 
-    domain/src/calculate_position.cpp
-    domain/src/orientation.cpp
+    domain/advance_turtle.cpp 
+    domain/calculate_position.cpp
+    domain/orientation.cpp
 )
-target_include_directories(libdomain PUBLIC domain/include)
+target_include_directories(libdomain PUBLIC domain)
 
 #setup automated tests
 add_executable(
     tests 
+
     tests/tests.cpp
     tests/orientation_tests.cpp
     tests/turtle_tests.cpp 
