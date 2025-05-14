@@ -33,10 +33,14 @@ conan install . --output-folder=${builddir} --build=missing -pr default
 
 echo "Build"
 cd ${builddir}
-cmake .. -DCMAKE_TOOLCHAIN_FILE=${builddir}/build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
-cmake --build .
 
 if [ ${test} = true ]; then
-    echo "Test"
-    make test
+  cmake .. -DCMAKE_TOOLCHAIN_FILE=${builddir}/build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=RELEASE -DENABLE_COVERAGE=ON
+  cmake --build .
+
+  echo "Test"
+  make coverage
+else
+  cmake .. -DCMAKE_TOOLCHAIN_FILE=${builddir}/build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+  cmake --build .
 fi
