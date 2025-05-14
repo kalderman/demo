@@ -5,9 +5,19 @@ find_package(glfw3 REQUIRED)
 find_package(glbinding REQUIRED)
 find_package(Catch2 REQUIRED)
 
+# Code coverage setup
+option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
+if(ENABLE_COVERAGE)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+        add_compile_options(--coverage -O0 -g)
+        add_link_options(--coverage)
+    else()
+        message(WARNING "Coverage is only supported for GCC")
+    endif()
+endif()
+
 add_executable(
     turtle_graphics 
-
     app/main.cpp
     app/include/openglwindow.hpp
     app/include/drawing.h
@@ -47,19 +57,8 @@ add_executable(
 )
 target_link_libraries(tests PRIVATE libdomain Catch2::Catch2WithMain)
 
-# Code coverage setup
-option(ENABLE_COVERAGE "Enable coverage reporting" OFF)
+# Code coverage target setup
 if(ENABLE_COVERAGE)
-    # Check if GCC or Clang is used
-    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-        # GCC-specific flags
-        target_compile_options(tests PRIVATE --coverage -O0 -g)
-        target_link_options(tests PRIVATE --coverage)
-    else()
-        message(WARNING "Coverage is only supported for GCC")
-    endif()
-
-    # Add custom target for generating coverage report
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         find_program(LCOV lcov)
         find_program(GENHTML genhtml)
@@ -68,7 +67,7 @@ if(ENABLE_COVERAGE)
                 COMMAND ${CMAKE_COMMAND} -E make_directory coverage
                 COMMAND tests
                 COMMAND ${LCOV} --capture --directory . --output-file coverage/coverage.info
-                COMMAND ${LCOV} --remove coverage/coverage.info '/usr/*' '*/tests/*' --output-file coverage/coverage.info
+                COMMAND ${LCOV} --remove coverage/coverage.info '/usr/*' '*/catch2/*' --output-file coverage/coverage.info
                 COMMAND ${GENHTML} coverage/coverage.info --output-directory coverage/html
                 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                 COMMENT "Generating coverage report"
