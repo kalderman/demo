@@ -45,11 +45,15 @@ TEST_CASE("Turn counterclockwise rotates the turtle 10 degrees counterclockwise"
     REQUIRE( actual.orientation.degrees == expected );
 }
 
-TEST_CASE("Toggle pen from default sets pen to down"){
+TEST_CASE("Toggle pen from default sets pen to down and from down to up"){
     auto given = Turtle();
     auto event = TogglePen{};
-    auto actual = advance_turtle(given, event);
-    REQUIRE( is_pen_down(actual) );
+
+    auto actual_down = advance_turtle(given, event);
+    REQUIRE( is_pen_down(actual_down) );
+
+    auto actual_up = advance_turtle(actual_down, event);
+    REQUIRE( is_pen_up(actual_up) );
 }
 
 Turtle rotate_90cw(const Turtle& t){
