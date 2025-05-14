@@ -34,7 +34,7 @@ jobs:
           command: conan profile detect
       - run:
           name: Build and Test
-          command: sh build.sh -test
+          command: sh build.sh -install -test
 workflows:
   build-and-test:
     jobs:

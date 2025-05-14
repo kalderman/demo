@@ -1,15 +1,18 @@
 clean=false
 clobber=false
+install=false
 test=false
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
+    -install) install=true; shift 1;;
     -clean) clean=true; shift 1;;
     -clobber) clobber=true; clean=true; shift 1;;
     -test) test=true; shift 1;;
     -h) echo "Usage:";
+        echo "       -install: Installs dependencies.";
         echo "       -clean: Removes build artifacts.";
-        echo "       -clobber: Cleans and updates dependencies.";
+        echo "       -clobber: Cleans build artifacts and deletes Conan cache.";
         echo "       -test: Executes unit tests.";
         exit 0;;
     -*) echo "Error: unknown option $1" >&2; exit 1;;
@@ -28,8 +31,10 @@ if [ ${clobber} = true ]; then
   conan remove "*" -c
 fi
 
-echo "Install dependencies"
-conan install . --output-folder=${builddir} --build=missing -pr default
+if [ ${install} = true ]; then
+  echo "Install dependencies"
+  conan install . --output-folder=${builddir} --build=missing -pr default
+fi
 
 echo "Build"
 cd ${builddir}
